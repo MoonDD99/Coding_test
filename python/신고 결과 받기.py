@@ -1,4 +1,5 @@
-from msilib.schema import AppSearch
+
+from xml.dom.minidom import Identified
 
 
 id_list = ["con", "ryan"]
@@ -42,5 +43,18 @@ def solution(id_list, report, k):
     
     return answer
 
-answer = solution(id_list,report,k)
+def solution1(id_list, report, k):
+    answer = [0] * len(id_list)
+    decl_result = {x : 0 for x in id_list}
+
+    for decl in set(report):
+        decl_result[(decl.split())[1]] += 1
+
+    for decl in set(report):
+        if decl_result[(decl.split())[1]] >= k:
+            answer[id_list.index(decl.split()[0])] += 1
+    
+    return answer
+
+answer = solution1(id_list,report,k)
 print(answer)
