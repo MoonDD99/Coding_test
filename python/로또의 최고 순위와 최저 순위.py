@@ -1,7 +1,8 @@
-#Fail Test : 14
-#Score : 93.3 / 100.0
+
 
 def solution(lottos, win_nums):
+    #Fail Test : 14
+    #Score : 93.3 / 100.0
     lottos_set = set(lottos)
     win_nums_set = set(win_nums)
     
@@ -23,6 +24,7 @@ def solution(lottos, win_nums):
     return answer
 
 def solution1(lottos, win_nums):
+    #Score : 100.0 / 100.0
     rank = [6,6,5,4,3,2,1]
     zero = lottos.count(0)
 
