@@ -21,3 +21,16 @@ def solution(lottos, win_nums):
     answer.append(max)
     answer.append(min)
     return answer
+
+def solution1(lottos, win_nums):
+    rank = [6,6,5,4,3,2,1]
+    zero = lottos.count(0)
+
+    win = 0
+    for num in win_nums:
+        if num in lottos:
+            win += 1
+    max = rank[win+zero]
+    min = rank[win]
+    answer = [max,min]
+    return answer
