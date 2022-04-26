@@ -1,5 +1,7 @@
 import heapq
 def dijkstra(dist, node_cost):
+    # score : 100.0 / 100.0
+    # 다시 풀어볼 것!!
     heap = []
     heapq.heappush(heap,[1,0])
 
