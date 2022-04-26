@@ -7,7 +7,7 @@ def solution(n, words):
     
     for index in range(1,len(words)):
         word = words[index]
-        if len(word) <= 1 or last_char != word[0] or word in exist_word :
+        if last_char != word[0] or word in exist_word :
             answer[0] = index % n + 1
             answer[1] = math.ceil((index+1)/n)
             break
