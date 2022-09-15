@@ -1,10 +1,12 @@
 from itertools import permutations
 
 def isPrimeNum(number):
-    for divisor in range(2, number, 1):
-        if number % divisor == 0:
+    if number < 2:
+        return False
+    for divisor in range(2, int(number**0.5)+1):
+        if number % divisor == 0:	
             return False
-        return True
+    return True
 
 def solution(numbers):
     primeNumSet = set()
@@ -21,9 +23,12 @@ def solution(numbers):
                 primeNumSet.add(number)
         
     #primeNumSet 길이 return
+    print(primeNumSet)
     return len(primeNumSet)
 
 #numbers = "17"
-numbers = "011"
+#numbers = "011"
+numbers = "1231"
+print(isPrimeNum(1))
 answer = solution(numbers)
 print(answer)
