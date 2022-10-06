@@ -1,31 +1,27 @@
+import math
+
 def solution(enroll, referral, seller, amount):
-    answer = []
-    profitMap = {}
-    for member in enroll:
-        profitMap[member] = 0
 
-    for index in range(0,len(seller)) :
-        profitMap[seller[index]] += amount[index] * 100
+    enrollDict = dict(zip(enroll, referral))
+    profitDict = dict(zip(enroll, [0 for i in range(len(enroll))]))
 
-    for index in range(len(enroll)-1, -1, -1):
-        share = int(profitMap[enroll[index]] / 10)
+    
+    for index in range(len(seller)):
+        share = amount[index] * 100
+        target = seller[index]
 
-        if referral[index] in profitMap:
-            profitMap[enroll[index]] -= share  
-            profitMap[referral[index]] += share
-        else:
-            profitMap[enroll[index]] -= share  
-        print("")
-        print("-------------------------")
-        print("share : " + str(share))
-        print("sharing Member : " + enroll[index] + " profitMap : " + str(profitMap[enroll[index]]))
-        if referral[index] in profitMap:
-            print("shared : " + referral[index] + " profitMap : " + str(profitMap[referral[index]]))
-        else :
-            print("shared : " + referral[index] + " profitMap : " + " - ")
-    for member in enroll: 
-        answer.append(profitMap[member])
-    return answer
+        while True :
+            if share < 10 : 
+                profitDict[target] += share
+                break
+            else : 
+                profitDict[target] += math.ceil(share * 0.9)
+                if enrollDict[target] == "-": 
+                    break
+                share = math.floor(share*0.1)
+                target = enrollDict[target]
+                    
+    return list(profitDict.values())
 
 enroll = ["john", "mary", "edward", "sam", "emily", "jaimie", "tod", "young"]
 referral = ["-", "-", "mary", "edward", "mary", "mary", "jaimie", "edward"]
