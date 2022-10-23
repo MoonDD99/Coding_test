@@ -2,24 +2,24 @@ import math
 
 def solution(enroll, referral, seller, amount):
 
-    enrollDict = dict(zip(enroll, referral))
-    profitDict = dict(zip(enroll, [0 for i in range(len(enroll))]))
+    enrollDict = dict(zip(enroll, referral)) #{판매원 : 추천인}
+    profitDict = dict(zip(enroll, [0 for i in range(len(enroll))])) #{판매원 : 정산금}
 
     
     for index in range(len(seller)):
-        share = amount[index] * 100
-        target = seller[index]
+        share = amount[index] * 100 # 이익
+        target = seller[index] # 추천인
 
         while True :
-            if share < 10 : 
+            if share < 10 : # 추천인에게 돌아가는 이익이 10보다 작은경우
                 profitDict[target] += share
-                break
+                break 
             else : 
-                profitDict[target] += math.ceil(share * 0.9)
-                if enrollDict[target] == "-": 
+                profitDict[target] += math.ceil(share * 0.9) # 이익의 90%
+                if enrollDict[target] == "-": #추천인이 민호인 경우
                     break
-                share = math.floor(share*0.1)
-                target = enrollDict[target]
+                share = math.floor(share*0.1) #이익의 10%
+                target = enrollDict[target] #현재 target의 추천인
                     
     return list(profitDict.values())
 
