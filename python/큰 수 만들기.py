@@ -20,12 +20,17 @@ def solution(number, k):
             k -= 1
         result.append(num)
     
+    print(result)
     return ''.join(result[:len(result) - k])
 number = "1924"
 k = 2
+result = solution(number, k)
 number = "1231234"
 k = 3
+result = solution(number, k)
 number ="4177252841"
 k = 4 
+number = "987654"
+k = 2
 result = solution(number, k)
 print(result)
