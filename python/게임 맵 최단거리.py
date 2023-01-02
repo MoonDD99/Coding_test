@@ -35,5 +35,35 @@ answer = solution(maps)
 print(answer)
 
 
+def solution1(maps):
+    #상하좌우
+    dr = [-1,1,0,0]
+    dc = [0,0,-1,1]
 
+    lenRow = len(maps)
+    lenCol = len(maps[0])
 
+    def bfs(firstRow,firstCol):
+        que = deque()
+        que.append((firstRow,firstCol))
+
+        while que:
+            row, col = que.popleft()
+            for i in range(4):
+                nextRow = row + dr[i]
+                nextCol = col + dc[i]
+
+                if nextRow < 0 or nextRow >= lenRow or nextCol < 0 or nextCol >= lenCol:
+                    continue
+
+                if maps[nextRow][nextCol] == 0:
+                    continue
+
+                if maps[nextRow][nextCol] == 1:
+                    maps[nextRow][nextCol] = maps[row][col] + 1
+                    que.append((nextRow,nextCol))
+
+        return maps[lenRow - 1][lenCol - 1]
+    
+    answer = bfs(0,0)
+    return answer if answer != 1 else -1
