@@ -13,14 +13,14 @@ def solution(graph):
     dc = [0,0,-1,1]
 
 
-    def bfs(firstRow, firstCol):
+    def bfs(firstRow, firstCol, targetRow, targetCol):
         que = deque()
         que.append((firstRow, firstCol))
 
         while que:
             row, col = que.popleft()
-            if row == N-1 and col == M-1 :
-                return graph[N-1][M-1]
+            if row == targetRow and col == targetCol :
+                return graph[targetRow][targetCol]
             for index in range(4):
                 nextRow = row + dr[index]
                 nextCol = col + dc[index]
@@ -34,7 +34,7 @@ def solution(graph):
                     que.append((nextRow, nextCol))
 
                 
-    answer = bfs(0,0)
+    answer = bfs(0,0,N-1,M-1)
     print(answer)
 
 solution(graph)
