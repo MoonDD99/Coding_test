@@ -1,15 +1,22 @@
 from collections import defaultdict, deque
 def solution(genres, plays):
     answer = []
-    genreSong = defaultdict(list) #{genre : [plays]}
-    genreTotalPlay = defaultdict(int) #{genre : totalPlay} {totalPlay : genre}
+    genreSong = {} #{genre : [(index,play)]}
+    genreTotalPlay = {} #{genre : totalPlay} {totalPlay : genre}
 
     for index in range(len(genres)):
         genre = genres[index]
         play = plays[index]
-
-        genreSong[genre].append((index, play))
-        genreTotalPlay[genre] += play
+        
+        if genre not in genreSong:
+            genreSong[genre] = [(index, play)]
+        else:    
+            genreSong[genre].append((index, play))
+            
+        if genre not in genreTotalPlay:
+            genreTotalPlay[genre] = play    
+        else:
+            genreTotalPlay[genre] += play
 
     
     sortTotalPlay = sorted(genreTotalPlay.items(), key=lambda x:x[1], reverse=True)

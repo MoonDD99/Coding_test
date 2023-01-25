@@ -26,6 +26,7 @@ def solution(numbers):
     print(primeNumSet)
     return len(primeNumSet)
 
+
 #numbers = "17"
 #numbers = "011"
 numbers = "1231"
