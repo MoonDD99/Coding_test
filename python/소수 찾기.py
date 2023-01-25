@@ -21,7 +21,7 @@ def solution(numbers):
             if isPrimeNum(number):
                 #numberSet에 저장
                 primeNumSet.add(number)
-        
+    
     #primeNumSet 길이 return
     print(primeNumSet)
     return len(primeNumSet)

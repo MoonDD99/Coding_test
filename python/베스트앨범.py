@@ -2,28 +2,25 @@ from collections import defaultdict, deque
 def solution(genres, plays):
     answer = []
     genreSong = defaultdict(list) #{genre : [plays]}
-    genreTotalPlay = defaultdict(int) #{genre : totalPlay}
-    firstGenre = "pop"
-    secondGenre = "classic"
+    genreTotalPlay = defaultdict(int) #{genre : totalPlay} {totalPlay : genre}
 
-    for index in range(len(genres)-1,-1,-1):
+    for index in range(len(genres)):
         genre = genres[index]
         play = plays[index]
 
-        if len(genreSong[genre]) == 0 :
-            genreSong[genre] = [index,0]
-        elif plays[(genreSong[genre])[0]] <= play:
-                (genreSong[genre])[1] = (genreSong[genre])[0]
-                (genreSong[genre])[0] = index
-        elif plays[(genreSong[genre])[1]] <= play:
-            (genreSong[genre])[1] = index
-
+        genreSong[genre].append((index, play))
         genreTotalPlay[genre] += play
 
+    
+    sortTotalPlay = sorted(genreTotalPlay.items(), key=lambda x:x[1], reverse=True)
+    
+    for key, value in sortTotalPlay[:2]:
+        sortSong = sorted(genreSong[key],key=lambda x:x[1], reverse=True)
+        for index, play in sortSong[:2]:
+            answer.append(index)
+    
 
-    answer.append((genreSong[firstGenre])[:2])
-    answer.append((genreSong[secondGenre])[:2])
-
+    print(genreTotalPlay)
     print(genreSong)
     return answer
 
