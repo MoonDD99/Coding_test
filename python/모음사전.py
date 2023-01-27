@@ -8,6 +8,16 @@ def solution(word):
         result += (charNum[word[i-1]]-1) * k + charNum[word[i-1]]
     return result
 
+def solution1(word):
+    answer = 0
+    alphaNum = {'A':1, 'E':2, 'I':3, 'O':4, 'U': 5}
+    for wordIndex in range(len(word)):
+        k = 0
+        for square in range(1,5-wordIndex):
+            k += 5**square
+        answer += k * (alphaNum[word[wordIndex]] - 1) + alphaNum[word[wordIndex]]
+    return answer
+
 word = "EIO" #"I" #"AAAAE" #"AAAE" 
 result = solution(word)
 print(result)
