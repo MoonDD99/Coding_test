@@ -15,5 +15,5 @@ def failSolution(citations):
 #citations = [3, 0, 6, 1, 5]
 #citations = [10000, 9999, 9998, 9997, 9996]
 citations = [10,10,10,10]
-answer = solution1(citations)
+answer = solution(citations)
 print(answer)
