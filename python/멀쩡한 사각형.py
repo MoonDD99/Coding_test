@@ -14,3 +14,16 @@ def solution(w,h):
     #최대공약수가 1이 아닐때
         return w * h - (w + h - com_factor)
     
+def solution1(w,h):
+    gcd = 1
+    for i in range(min(w,h),0,-1):
+        if ((w%i) == 0) and ((h%i) == 0):
+            gcd = i
+            break
+    return w*h - (w + h - gcd)
+
+def gcd(a,b):
+    if a == 0:
+        return b
+    else:
+        gcd(b%a, a)
