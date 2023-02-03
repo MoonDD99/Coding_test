@@ -41,8 +41,25 @@ def solution1(skill, skill_trees):
     return answer   
 
 
+from collections import deque
+def solution2(skill, skill_trees):
+    answer = 0
+    for tree in skill_trees:
+        treeDeque = deque(skill)
+        for char in tree:
+            if len(treeDeque) == 0:
+                break
+            skillChar = treeDeque.popleft()
+            if skillChar != char:
+                treeDeque.appendleft(skillChar)
+            print(treeDeque)
+        if len(treeDeque) <= 1:
+            answer += 1
+    return answer
+
 
 skill = "CBD"
-skill_tress = ["BACDE", "CBADF", "AECB", "BDA"]
-result = solution1(skill, skill_tress)
+skill_tress = ["BDA", "BACDE", "CBADF", "AECB"]
+#result = solution1(skill, skill_tress)
+result = solution2(skill, skill_tress)
 print(result)
