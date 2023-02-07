@@ -27,3 +27,6 @@ def gcd(a,b):
         return b
     else:
         gcd(b%a, a)
+
+answer = solution(10,9)
+print(answer)
