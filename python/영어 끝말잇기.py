@@ -16,3 +16,21 @@ def solution(n, words):
             exist_word.append(word)
 
     return answer
+
+from math import ceil
+def solution1(n, words):
+    answer = []
+    visited = {}
+    lenWords = len(words)
+    
+    lastChar = (words[0])[0]
+    
+    for index in range(lenWords):
+        word = words[index]
+        if lastChar != word[0] or word in visited or len(word) == 1:
+            return [(index % n)+1, ceil((index+1)/n)]
+        else:
+            visited[word] = 0
+            lastChar = word[-1]
+
+    return [0,0]
