@@ -23,6 +23,40 @@ def solution(enroll, referral, seller, amount):
                     
     return list(profitDict.values())
 
+import math
+def solution(enroll, referral, seller, amount):
+    answer = []
+    childParent = {}
+    childProfit = {}
+    
+    for index in range(len(enroll)):
+        child = enroll[index]
+        parent = referral[index]
+        
+        childParent[child] = parent
+        childProfit[child] = 0
+    
+    for index in range(len(seller)):
+        child = seller[index]
+        profit = amount[index] * 100 
+
+        while True:
+            if profit < 10:
+                childProfit[child] += profit
+                break
+            else:
+                childProfit[child] += math.ceil(profit*0.9)
+                child = childParent[child] 
+                if child == "-":
+                    break
+                profit = math.floor(profit*0.1)
+                      
+    
+    for index in range(len(enroll)):
+        answer.append(childProfit[enroll[index]])
+        
+    return answer
+
 enroll = ["john", "mary", "edward", "sam", "emily", "jaimie", "tod", "young"]
 referral = ["-", "-", "mary", "edward", "mary", "mary", "jaimie", "edward"]
 seller = ["young", "john", "tod", "emily", "mary"]
