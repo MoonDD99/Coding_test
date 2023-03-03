@@ -13,3 +13,15 @@ def preOrder(root):
             stack.appendleft(node.left)
 
     print(answer)
+
+from collections import deque
+def preOrder(root):
+    #Write your code here
+    if root == None:
+        return
+    print(root.info, end = " ")
+    
+    if root.left is not None:
+        preOrder(root.left)
+    if root.right is not None:
+        preOrder(root.right)
