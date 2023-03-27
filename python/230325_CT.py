@@ -24,6 +24,7 @@ def Solution(walls):
             floorSum.append(total)
         wallsSum.append(floorSum)
 
+    #인접한 블럭들 개수들 구하기
     for row in range(len(walls)):
         if row == 0:
             adjustBlock = getAdjustBlockNum(wallsSum[row], wallsSum[row+1])
