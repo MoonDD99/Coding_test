@@ -67,3 +67,28 @@ def solution1(maps):
     
     answer = bfs(0,0)
     return answer if answer != 1 else -1
+
+#230412
+from collections import deque
+def solution(maps):
+    #상하좌우
+    dr = [-1,1,0,0]
+    dc = [0,0,-1,1]
+    
+    lenRow = len(maps)
+    lenCol = len(maps[0])
+    
+    que = deque([(0,0)])
+    
+    while que:
+        row, col = que.popleft()
+        if row == (lenRow-1) and col == (lenCol-1):
+            return maps[row][col] 
+        for i in range(4):
+            cr = row + dr[i] #currentRow
+            cc = col + dc[i] #currentCol
+            if cr >= 0 and cr < lenRow and cc >= 0 and cc < lenCol and maps[cr][cc] == 1:
+                maps[cr][cc] = maps[row][col] + 1
+                que.append((cr,cc))
+    
+    return -1
