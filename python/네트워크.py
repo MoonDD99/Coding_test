@@ -64,3 +64,28 @@ def bfs(n, computers, visited, row):
         for col in range(n):
             if row != col and computers[row][col] == 1 and visited[col] == False:
                 bfs(n,computers, visited, col)
+
+#230412
+from collections import deque
+def solution(n, computers):
+    answer = bfs(computers)
+    return answer
+
+def bfs(computers):
+    answer = 0
+    visited = [0 for _ in range(len(computers))]
+    for row in range(len(computers)):
+        if visited[row] == 1:
+            continue
+        else:
+            answer += 1
+            que = deque([row])
+            
+            while que :
+                currentRow = que.popleft()
+                for col in range(len(computers[0])):
+                    if visited[col] != 1 and computers[currentRow][col] == 1 :
+                        visited[col] = 1
+                        que.append(col)            
+                
+    return answer
